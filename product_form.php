@@ -37,6 +37,16 @@
                                                         <label class="form-label">Product Price</label>
                                                         <input type="text" required class="form-control" name="cost" placeholder="Enter price of the product">
                                                     </div>
+                                                    <div class="mb-3 d-flex flex-wrap nowrap">
+                                                        <label class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="gift_wrapping">
+                                                            <span class="form-check-label">Grift Wrap</span>
+                                                        </label>
+                                                        <label class="form-check" style="margin-left: 10px;">
+                                                            <input class="form-check-input" type="checkbox" name="express_shipping">
+                                                            <span class="form-check-label">Express Shipping</span>
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="card-footer text-end">
