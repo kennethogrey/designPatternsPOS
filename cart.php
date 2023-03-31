@@ -1,7 +1,5 @@
 <?php
 
-namespace App;
-
 require 'nav.php';
 
 class Products
@@ -26,7 +24,7 @@ class Products
         include 'mysql.php';
 
         //execute the SQL query to select all products
-        $sql = "SELECT * FROM products";
+        $sql = "SELECT * FROM cart";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -41,7 +39,7 @@ class Products
                             <div class="row align-items-center">
                                 <div class="col">
                                     <h2 class="page-title">
-                                        Products
+                                        Cart
                                     </h2>
                                     <div class="page-body">
                                         <div class="container-xl">
@@ -89,23 +87,7 @@ class Products
                                                                                         </button>
                                                                                         <div class="dropdown-menu dropdown-menu-end">
                                                                                             <a class="dropdown-item" href="" onclick="event.preventDefault();
-                                                                                    document.getElementById('cart-form-<?php echo $row['id']; ?>').submit();">
-                                                                                                Add To Cart
-                                                                                            </a>
-                                                                                            <form id="cart-form-<?php echo $row["id"]; ?>" action="observer.php" method="POST" class="d-none">
-                                                                                                <input type="text" class="form-control" name="product_id" value="<?php echo $row["id"]; ?>">
-                                                                                            </form>
-
-                                                                                            <a class="dropdown-item" href="" onclick="event.preventDefault();
-                                                                                    document.getElementById('edit-form-<?php echo $row['id']; ?>').submit();">
-                                                                                                Edit
-                                                                                            </a>
-                                                                                            <form id="edit-form-<?php echo $row["id"]; ?>" action="edit.php" method="POST" class="d-none">
-                                                                                                <input type="text" class="form-control" name="product_id" value="<?php echo $row["id"]; ?>">
-                                                                                            </form>
-
-                                                                                            <a class="dropdown-item" href="" onclick="event.preventDefault();
-                                                                                    document.getElementById('delete-form').submit();">
+                                                                                                document.getElementById('delete-form').submit();">
                                                                                                 Delete
                                                                                             </a>
                                                                                             <form id="delete-form" action="delete.php" method="POST" class="d-none">

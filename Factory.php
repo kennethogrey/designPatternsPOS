@@ -6,6 +6,7 @@ namespace App;
     interface ProductInterface{
         public function addToDatabase();
         public function addFeatures($feature);
+
     }
 
     class Electronics implements ProductInterface{
@@ -32,6 +33,9 @@ namespace App;
         public function addFeatures($feature) {
             $this->features[] = $feature;
         }
+        public function getFeatures() {
+            return $this->features;
+          }
     
         
         public function addToDatabase(){
@@ -71,6 +75,9 @@ namespace App;
         public function addFeatures($feature) {
             $this->features[] = $feature;
         }
+        public function getFeatures() {
+            return $this->features;
+          }
     
         
         public function addToDatabase(){
@@ -110,6 +117,9 @@ namespace App;
         public function addFeatures($feature) {
             $this->features[] = $feature;
         }
+        public function getFeatures() {
+            return $this->features;
+          }
     
         
         public function addToDatabase(){
@@ -132,16 +142,14 @@ namespace App;
     
     class ProductDecorator implements ProductDecoratorInterface {
         private $featureName;
-        private $featureCost;
     
-        public function __construct($featureName, $featureCost) {
+        public function __construct($featureName) {
             $this->featureName = $featureName;
-            $this->featureCost = $featureCost;
         }
+
     
         public function addFeatures(ProductInterface $product) {
             $product->addFeatures($this->featureName);
-            $product->addFeatures($this->featureCost);
         }
     }
 
@@ -166,12 +174,12 @@ namespace App;
                 break;
             }
             if (isset($_POST['express_shipping'])) {
-                $productDecorator = new ProductDecorator('Express Shipping', '$10.0');
+                $productDecorator = new ProductDecorator('Express Shipping');
                 $productDecorator->addFeatures($product);
             }
     
             if (isset($_POST['gift_wrapping'])) {
-                $productDecorator = new ProductDecorator('Gift Wrapping', '$5.0');
+                $productDecorator = new ProductDecorator('Gift Wrapping');
                 $productDecorator->addFeatures($product);
             }
     
