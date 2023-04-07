@@ -51,6 +51,10 @@ if ($result->num_rows > 0) {
                                                         <label class="form-label">Product Price</label>
                                                         <input type="text" required class="form-control" name="cost" placeholder="Enter price of the product" value="<?php echo $row['cost'] ?>">
                                                     </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Product Quantity</label>
+                                                        <input type="text" required class="form-control" name="quantity" placeholder="Enter quantity of the product" value="<?php echo $row['quantity'] ?>">
+                                                    </div>
                                                     <div class="mb-3 d-flex flex-wrap nowrap">
                                                         <label class="form-check">
                                                             <input class="form-check-input" type="checkbox" name="gift_wrapping">

@@ -35,7 +35,11 @@
                                                     </div>
                                                     <div class="mb-3">
                                                         <label class="form-label">Product Price</label>
-                                                        <input type="text" required class="form-control" name="cost" placeholder="Enter price of the product">
+                                                        <input type="text" required class="form-control" name="cost" placeholder="Enter price @each product">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Product quantity</label>
+                                                        <input type="text" class="form-control" required name="quantity" placeholder="Enter quantity of the product">
                                                     </div>
                                                     <div class="mb-3 d-flex flex-wrap nowrap">
                                                         <label class="form-check">

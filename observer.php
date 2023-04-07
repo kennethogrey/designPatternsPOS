@@ -37,20 +37,24 @@ class Cart implements Observer {
             $features = $row['bonus_feature'];
         }
 
-        $sql = "INSERT INTO cart (pname, cost, category, bonus_feature) VALUES ('$name', '$cost', '$category', '$features')";
-            
-        if ($conn->query($sql) === TRUE) {
-            $_SESSION['status'] = $name.' has been added to the cart';
+        $sql = "SELECT * FROM cart WHERE pname = '$name'";
+        $result = $conn->query($sql);
+        if($result->num_rows > 0){
+            $_SESSION['status'] ='The product already exists in the cart';
             header('Location:http://localhost/pos/index.php');
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+        else{
+            $sql = "INSERT INTO cart (pname, cost, category, bonus_feature) VALUES ('$name', '$cost', '$category', '$features')";
+                
+            if ($conn->query($sql) === TRUE) {
+                $_SESSION['status'] = $name.' has been added to the cart';
+                header('Location:http://localhost/pos/index.php');
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
         }
         
         $conn->close();
-        echo $name;
-        echo $cost;
-        echo $category;
-        echo $features;
     }
 
     public function notify(Sales $subject) {

@@ -50,7 +50,7 @@ class Products
                                                     <?php
                                                         if(isset($_SESSION['status'])){
                                                             ?>
-                                                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                                                <div class="alert alert-warning bg-info alert-dismissible fade show" role="alert">
                                                                     <strong>Info:</strong><?php echo $_SESSION['status']; ?>
                                                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                                                 </div>
@@ -63,11 +63,12 @@ class Products
                                                             <table class="table table-vcenter table-mobile-md card-table">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th>Product Id</th>
-                                                                        <th>Product Name</th>
-                                                                        <th>Product Price</th>
+                                                                        <th>Id</th>
+                                                                        <th>Product</th>
+                                                                        <th>Price</th>
                                                                         <th>Bonus Features</th>
-                                                                        <th>Product Category</th>
+                                                                        <th>Category</th>
+                                                                        <th>In stock</th>
                                                                         <th class="w-auto"></th>
                                                                     </tr>
                                                                 </thead>
@@ -81,6 +82,7 @@ class Products
                                                                             <td class="text-muted"><?php echo $row["cost"] ?></td>
                                                                             <td class="text-muted"><?php echo $row["bonus_feature"] ?></td>
                                                                             <td class="text-muted"><?php echo $row["category"] ?></td>
+                                                                            <td class="text-muted"><?php echo $row["quantity"] ?></td>
                                                                             <td>
                                                                                 <div class="btn-list flex-nowrap">
                                                                                     <div class="dropdown">
@@ -88,7 +90,7 @@ class Products
                                                                                             Actions
                                                                                         </button>
                                                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                                                            <a class="dropdown-item" href="" onclick="event.preventDefault();
+                                                                                            <a class="dropdown-item btn btn-success" href="" onclick="event.preventDefault();
                                                                                     document.getElementById('cart-form-<?php echo $row['id']; ?>').submit();">
                                                                                                 Add To Cart
                                                                                             </a>
@@ -96,7 +98,7 @@ class Products
                                                                                                 <input type="text" class="form-control" name="product_id" value="<?php echo $row["id"]; ?>">
                                                                                             </form>
 
-                                                                                            <a class="dropdown-item" href="" onclick="event.preventDefault();
+                                                                                            <a class="dropdown-item btn btn-info" href="" onclick="event.preventDefault();
                                                                                     document.getElementById('edit-form-<?php echo $row['id']; ?>').submit();">
                                                                                                 Edit
                                                                                             </a>
@@ -104,11 +106,11 @@ class Products
                                                                                                 <input type="text" class="form-control" name="product_id" value="<?php echo $row["id"]; ?>">
                                                                                             </form>
 
-                                                                                            <a class="dropdown-item" href="" onclick="event.preventDefault();
-                                                                                    document.getElementById('delete-form').submit();">
+                                                                                            <a class="dropdown-item btn btn-danger" href="" onclick="event.preventDefault();
+                                                                                    document.getElementById('delete-form-<?php echo $row['id']; ?>').submit();">
                                                                                                 Delete
                                                                                             </a>
-                                                                                            <form id="delete-form" action="delete.php" method="POST" class="d-none">
+                                                                                            <form id="delete-form-<?php echo $row['id']; ?>" action="delete.php" method="POST" class="d-none">
                                                                                                 <input type="text" class="form-control" name="product_id" value="<?php echo $row["id"]; ?>">
                                                                                             </form>
                                                                                         </div>
