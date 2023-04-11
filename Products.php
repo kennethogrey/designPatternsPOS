@@ -40,23 +40,41 @@ class Products
                         <div class="page-header d-print-none">
                             <div class="row align-items-center">
                                 <div class="col">
-                                    <h2 class="page-title">
+                                    <!-- <h2 class="page-title">
                                         Products
-                                    </h2>
+                                    </h2> -->
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h2 class="page-title">
+                                                Products
+                                            </h2>
+                                        </div>
+                                        <!-- Page title actions -->
+                                        <div class="col-auto ms-auto d-print-none">
+                                            <div class="btn-list">
+                                                <form action="observer.php" method="post">
+                                                    <div class="d-flex">
+                                                        <input type="text" class="form-control" name="product_id" placeholder="Enter product ID">
+                                                        <button type="submit" class="btn btn-primary">Add to Cart</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="page-body">
                                         <div class="container-xl">
                                             <div class="row row-cards">
                                                 <div class="col-12">
                                                     <?php
-                                                        if(isset($_SESSION['status'])){
-                                                            ?>
-                                                                <div class="alert alert-warning bg-info alert-dismissible fade show" role="alert">
-                                                                    <strong>Info:</strong><?php echo $_SESSION['status']; ?>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                                                </div>
-                                                            <?php
-                                                            unset($_SESSION['status']);
-                                                        }
+                                                    if (isset($_SESSION['status'])) {
+                                                    ?>
+                                                        <div class="alert alert-warning bg-info alert-dismissible fade show" role="alert">
+                                                            <strong>Info:</strong><?php echo $_SESSION['status']; ?>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                        </div>
+                                                    <?php
+                                                        unset($_SESSION['status']);
+                                                    }
                                                     ?>
                                                     <div class="card">
                                                         <div class="table-responsive">
@@ -156,9 +174,11 @@ class Products
                                                         <div class="table-responsive">
                                                             <table class="table table-vcenter table-mobile-md card-table">
                                                                 <tbody>
-                                                                        <tr>
-                                                                            <td class="w-full text-center"><h1>No Products in the store</h1></td>
-                                                                        </tr>
+                                                                    <tr>
+                                                                        <td class="w-full text-center">
+                                                                            <h1>No Products in the store</h1>
+                                                                        </td>
+                                                                    </tr>
                                                                 </tbody>
                                                             </table>
                                                         </div>

@@ -122,6 +122,7 @@ class CashPaymentStrategy implements PaymentStrategy
                             you again!</p>
                     </div>
                     <form action="inventory_update.php" method="post">
+                        <input class="form-check-input" type="text" name="payment_method" value="Cash" hidden>
                         <button type="submit" class="btn btn-primary ms-auto">Finish Transaction</button>
                     </form>
                 </div>
@@ -239,6 +240,7 @@ class CreditCardPaymentStrategy implements PaymentStrategy
                             you again!</p>
                     </div>
                     <form action="inventory_update.php" method="post">
+                    <input class="form-check-input" type="text" name="payment_method" value="Credit Card" hidden>
                         <button type="submit" class="btn btn-primary ms-auto">Finish Transaction</button>
                     </form>
                 </div>

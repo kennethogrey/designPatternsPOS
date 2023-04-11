@@ -27,9 +27,10 @@ while ($row = $result->fetch_assoc()) {
 $sql = "SELECT * FROM cart";
 $result = $conn->query($sql);
 
+$payment_method = $_POST['payment_method'];
 // loop through each row
 while ($row = $result->fetch_assoc()) {
-    $sql = "INSERT INTO sales (pname, cost, quantity, category) VALUES ('{$row['pname']}', '{$row['cost']}', '{$row['quantity']}', '{$row['category']}')";
+    $sql = "INSERT INTO sales (pname, cost, quantity, category, payment_method) VALUES ('{$row['pname']}', '{$row['cost']}', '{$row['quantity']}', '{$row['category']}','$payment_method')";
     $conn->query($sql);
 
 }
