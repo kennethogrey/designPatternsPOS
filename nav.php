@@ -12,6 +12,7 @@
     <link href="./dist/css/tabler-payments.min.css" rel="stylesheet" />
     <link href="./dist/css/tabler-vendors.min.css" rel="stylesheet" />
     <link href="./dist/css/demo.min.css" rel="stylesheet" />
+    <script src="./dist/libs/apexcharts/dist/apexcharts.min.js"></script>
 </head>
 
 <body>
@@ -33,10 +34,10 @@
                 <div class="container-xl">
                     <ul class="navbar-nav">
                         <li class="nav-item <?php
-                            if(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) == "/pos/index.php"){
-                                echo "active";
-                            }
-                        ?>">
+                                            if (parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) == "/pos/index.php") {
+                                                echo "active";
+                                            }
+                                            ?>">
                             <a class="nav-link" href="index.php">
                                 <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -53,9 +54,9 @@
                         </li>
                         <li class="nav-item dropdown
                             <?php
-                                if(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) == "/pos/product_form.php"){
-                                    echo "active";
-                                }
+                            if (parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) == "/pos/product_form.php") {
+                                echo "active";
+                            }
                             ?>
                         ">
                             <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
@@ -83,18 +84,39 @@
                             </div>
                         </li>
                         <li class="nav-item <?php
-                            if(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) == "/pos/cart.php"){
-                                echo "active";
-                            }
-                        ?>">
+                                            if (parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) == "/pos/cart.php") {
+                                                echo "active";
+                                            }
+                                            ?>">
                             <a class="nav-link" href="cart.php">
                                 <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                                </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                    </svg>
                                 </span>
                                 <span class="nav-link-title">
                                     Cart
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item <?php
+                                            if (parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) == "/pos/reports.php") {
+                                                echo "active";
+                                            }
+                                            ?>">
+                            <a class="nav-link" href="reports.php">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-report-analytics" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
+                                        <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+                                        <path d="M9 17v-5" />
+                                        <path d="M12 17v-1" />
+                                        <path d="M15 17v-3" />
+                                    </svg>
+                                </span>
+                                <span class="nav-link-title">
+                                    Reports
                                 </span>
                             </a>
                         </li>

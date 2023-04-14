@@ -79,11 +79,25 @@ class Product implements Sales {
     }
 }
 
-$id = $_POST['product_id'];
-$sale = new Product($id);
+include "mysql.php";
+$stmt = $conn->prepare("SELECT * FROM products WHERE id = ?");
+$stmt->bind_param("i", $_POST["product_id"]);
+$stmt->execute();
+$result = $stmt->get_result();
 
-$cart = new Cart();
-$cart->add($sale);
-$cart->notify($sale);
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $id = $row["id"];
+    $sale = new Product($id);
+
+    $cart = new Cart();
+    $cart->add($sale);
+    $cart->notify($sale);
+}else{
+    $_SESSION['status'] ='Invalid product Id';
+    header('Location:http://localhost/pos/index.php');
+}
+
+
 
 ?>
