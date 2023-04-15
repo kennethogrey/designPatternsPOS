@@ -1,4 +1,6 @@
-<?php require 'nav.php' ?>
+<?php 
+    require 'nav.php';
+?>
 <div class="wrapper">
     <div class="page-wrapper">
         <div class="container-xl">
@@ -24,7 +26,7 @@
                                                         <input type="text" class="form-control" required name="name" placeholder="Enter name of the product">
                                                     </div>
                                                     <div class="form-group mb-3 ">
-                                                        <label class="form-label">Select</label>
+                                                        <label class="form-label">Product Category</label>
                                                         <div>
                                                             <select class="form-select" required name="category">
                                                                 <option value="Electronics">Electronics</option>
@@ -48,6 +50,7 @@
                                                         </label>
                                                         <label class="form-check" style="margin-left: 10px;">
                                                             <input class="form-check-input" type="checkbox" name="express_shipping">
+                                                            <input class="form-check-input" type="text" name="created_by" hidden value="<?php $_SESSION["email"];?>">
                                                             <span class="form-check-label">Express Shipping</span>
                                                         </label>
                                                     </div>
@@ -55,7 +58,7 @@
                                             </div>
                                             <div class="card-footer text-end">
                                                 <div class="d-flex">
-                                                    <a href="index.php" class="btn btn-danger">Cancel</a>
+                                                    <a href="dashboard.php" class="btn btn-danger">Cancel</a>
                                                     <button type="submit" class="btn btn-primary ms-auto">Create Product</button>
                                                 </div>
                                             </div>

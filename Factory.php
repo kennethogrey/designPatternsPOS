@@ -42,7 +42,7 @@ session_start();
         }
         public function getFeatures() {
             return $this->features;
-          }
+        }
     
         
         public function addToDatabase(){
@@ -51,16 +51,17 @@ session_start();
             $result = $conn->query($sql);
             if($result->num_rows > 0){
                 $_SESSION['status'] ='The product already exists in the inventory';
-                header('Location:http://localhost/pos/index.php');
+                header('Location:http://localhost/pos/dashboard.php');
             }
             else{
                 $sql = "INSERT INTO products (pname, cost, category, quantity, bonus_feature) VALUES ('$this->name', '$this->cost', '$this->category', '$this->quantity', '" . implode(',', $this->features) . "')";
             
                 if ($conn->query($sql) === TRUE) {
                 $_SESSION['status'] =$this->name.' has been added to the inventory successfully.';
-                    header('Location:http://localhost/pos/index.php');
+                    header('Location:http://localhost/pos/dashboard.php');
                 } else {
-                  echo "Error: " . $sql . "<br>" . $conn->error;
+                    $_SESSION["status"] = "Error inserting ".$this->name." into the inventory.";
+                    header('Location:http://localhost/pos/dashboard.php');
                 }
 
             }
@@ -99,7 +100,7 @@ session_start();
         }
         public function getFeatures() {
             return $this->features;
-          }
+        }
     
         
         public function addToDatabase(){
@@ -108,16 +109,17 @@ session_start();
             $result = $conn->query($sql);
             if($result->num_rows > 0){
                 $_SESSION['status'] ='The product already exists in the inventory';
-                header('Location:http://localhost/pos/index.php');
+                header('Location:http://localhost/pos/dashboard.php');
             }
             else{
                 $sql = "INSERT INTO products (pname, cost, category, quantity, bonus_feature) VALUES ('$this->name', '$this->cost', '$this->category', '$this->quantity', '" . implode(',', $this->features) . "')";
             
                 if ($conn->query($sql) === TRUE) {
                 $_SESSION['status'] =$this->name.' has been added to the inventory successfully.';
-                    header('Location:http://localhost/pos/index.php');
+                    header('Location:http://localhost/pos/dashboard.php');
                 } else {
-                  echo "Error: " . $sql . "<br>" . $conn->error;
+                    $_SESSION["status"] = "Error inserting ".$this->name." into the inventory.";
+                    header('Location:http://localhost/pos/dashboard.php');
                 }
 
             }
@@ -157,25 +159,25 @@ session_start();
         }
         public function getFeatures() {
             return $this->features;
-          }
+        }
     
-        
         public function addToDatabase(){
             include 'mysql.php';
             $sql = "SELECT * FROM products WHERE pname = '$this->name'";
             $result = $conn->query($sql);
             if($result->num_rows > 0){
                 $_SESSION['status'] ='The product already exists in the inventory';
-                header('Location:http://localhost/pos/index.php');
+                header('Location:http://localhost/pos/dashboard.php');
             }
             else{
                 $sql = "INSERT INTO products (pname, cost, category, quantity, bonus_feature) VALUES ('$this->name', '$this->cost', '$this->category', '$this->quantity', '" . implode(',', $this->features) . "')";
             
                 if ($conn->query($sql) === TRUE) {
                 $_SESSION['status'] =$this->name.' has been added to the inventory successfully.';
-                    header('Location:http://localhost/pos/index.php');
+                    header('Location:http://localhost/pos/dashboard.php');
                 } else {
-                  echo "Error: " . $sql . "<br>" . $conn->error;
+                    $_SESSION["status"] = "Error inserting ".$this->name." into the inventory.";
+                    header('Location:http://localhost/pos/dashboard.php');
                 }
 
             }

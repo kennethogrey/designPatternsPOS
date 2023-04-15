@@ -6,9 +6,11 @@
         $sql = "DELETE FROM products WHERE id = $product_id";
         
         if ($conn->query($sql) === TRUE) {
-            header('Location:http://localhost/pos/index.php');
+            $_SESSION["status"]="The product has been deleted successfully.";
+            header('Location:http://localhost/pos/dashboard.php');
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            $_SESSION["status"] = "Error deleting the product.";
+            header('Location:http://localhost/pos/dashboard.php');
         }
     }
     $conn->close();

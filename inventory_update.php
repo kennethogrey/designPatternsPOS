@@ -1,5 +1,7 @@
 
 <?php
+session_start();
+$seller = $_SESSION["email"];
 include "mysql.php";
 
 // retrieve all rows from cart
@@ -30,7 +32,7 @@ $result = $conn->query($sql);
 $payment_method = $_POST['payment_method'];
 // loop through each row
 while ($row = $result->fetch_assoc()) {
-    $sql = "INSERT INTO sales (pname, cost, quantity, category, payment_method) VALUES ('{$row['pname']}', '{$row['cost']}', '{$row['quantity']}', '{$row['category']}','$payment_method')";
+    $sql = "INSERT INTO sales (pname, cost, quantity, category, payment_method, seller) VALUES ('{$row['pname']}', '{$row['cost']}', '{$row['quantity']}', '{$row['category']}','$payment_method','$seller')";
     $conn->query($sql);
 
 }
@@ -40,6 +42,8 @@ while ($row = $result->fetch_assoc()) {
 $sql = "DELETE FROM cart";
 $conn->query($sql);
 $conn->close();
-header('Location:http://localhost/pos/index.php');
+$_SESSION["status"] = "Transaction completed successfully.";
+header('Location:http://localhost/pos/dashboard.php');
+
 
 ?>

@@ -6,9 +6,11 @@
         $sql = "DELETE FROM cart WHERE id = $product_id";
         
         if ($conn->query($sql) === TRUE) {
+            $_SESSION["status"]="Product has been deleted from the cart successfully.";
             header('Location:http://localhost/pos/cart.php');
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            $_SESSION["status"] = "Error deleting the product from the cart";
+            header('Location:http://localhost/pos/cart.php');
         }
     }
 
@@ -31,7 +33,8 @@
             $_SESSION['status']=$name.'quantity and price have been updated successfully';
             header('Location:http://localhost/pos/cart.php');
         } else {
-        echo "Error updating record: " . $conn->error;
+            $_SESSION["status"] = "Error updating the quantity and price of ".$name;
+            header('Location:http://localhost/pos/cart.php');
         }
     }
     $conn->close();

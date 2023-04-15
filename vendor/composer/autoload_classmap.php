@@ -6,7 +6,9 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Admin' => $baseDir . '/UserFactory.php',
     'App\\Cart' => $baseDir . '/observer.php',
+    'App\\Cashier' => $baseDir . '/UserFactory.php',
     'App\\Clothing' => $baseDir . '/Factory.php',
     'App\\Electronics' => $baseDir . '/Factory.php',
     'App\\Groceries' => $baseDir . '/Factory.php',
@@ -18,6 +20,9 @@ return array(
     'App\\ProductInterface' => $baseDir . '/Factory.php',
     'App\\Products' => $baseDir . '/Products.php',
     'App\\Sales' => $baseDir . '/observer.php',
+    'App\\UserFactory' => $baseDir . '/UserFactory.php',
+    'App\\UserInterface' => $baseDir . '/UserFactory.php',
+    'App\\Users' => $baseDir . '/all_users.php',
     'CashPaymentStrategy' => $baseDir . '/payment.php',
     'ComposerAutoloaderInit3ea7059a619d002c6ac708073725adfe' => $vendorDir . '/composer/autoload_real.php',
     'Composer\\Autoload\\ClassLoader' => $vendorDir . '/composer/ClassLoader.php',
@@ -867,8 +872,6 @@ return array(
     'PHPUnit\\Util\\Xml\\ValidationResult' => $vendorDir . '/phpunit/phpunit/src/Util/Xml/ValidationResult.php',
     'PHPUnit\\Util\\Xml\\Validator' => $vendorDir . '/phpunit/phpunit/src/Util/Xml/Validator.php',
     'PHPUnit\\Util\\Xml\\XmlException' => $vendorDir . '/phpunit/phpunit/src/Util/Exception/XmlException.php',
-    'PHPlot' => $vendorDir . '/phplot/phplot.php',
-    'PHPlot_truecolor' => $vendorDir . '/phplot/phplot.php',
     'PaymentContext' => $baseDir . '/payment.php',
     'PaymentStrategy' => $baseDir . '/payment.php',
     'PharIo\\Manifest\\Application' => $vendorDir . '/phar-io/manifest/src/values/Application.php',

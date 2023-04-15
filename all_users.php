@@ -4,7 +4,7 @@ namespace App;
 
 require 'nav.php';
 
-class Products
+class Users
 {
     private static $instance = null;
 
@@ -16,27 +16,18 @@ class Products
     public static function getInstance()
     {
         if (self::$instance == null) {
-            self::$instance = new Products();
+            self::$instance = new Users();
         }
         return self::$instance;
     }
 
-    public function allProducts()
+    public function allUsers()
     {
         include 'mysql.php';
         $email = $_SESSION["email"];
-        $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $role = $row['user_role'];
-        }
 
         //execute the SQL query to select all products
-        $sql = "SELECT * FROM products";
+        $sql = "SELECT * FROM users WHERE email != '$email'";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -56,19 +47,8 @@ class Products
                                     <div class="row align-items-center">
                                         <div class="col">
                                             <h2 class="page-title">
-                                                Products
+                                                Users
                                             </h2>
-                                        </div>
-                                        <!-- Page title actions -->
-                                        <div class="col-auto ms-auto d-print-none">
-                                            <div class="btn-list">
-                                                <form action="observer.php" method="post">
-                                                    <div class="d-flex">
-                                                        <input type="text" class="form-control" name="product_id" placeholder="Enter product ID">
-                                                        <button type="submit" class="btn btn-primary">Add to Cart</button>
-                                                    </div>
-                                                </form>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="page-body">
@@ -92,11 +72,8 @@ class Products
                                                                 <thead>
                                                                     <tr>
                                                                         <th>Id</th>
-                                                                        <th>Product</th>
-                                                                        <th>Price</th>
-                                                                        <th>Bonus Features</th>
-                                                                        <th>Category</th>
-                                                                        <th>In stock</th>
+                                                                        <th>Email</th>
+                                                                        <th>Role</th>
                                                                         <th class="w-auto"></th>
                                                                     </tr>
                                                                 </thead>
@@ -106,11 +83,8 @@ class Products
                                                                     ?>
                                                                         <tr>
                                                                             <td><?php echo $row["id"] ?></td>
-                                                                            <td><?php echo $row["pname"] ?></td>
-                                                                            <td class="text-muted"><?php echo $row["cost"] ?></td>
-                                                                            <td class="text-muted"><?php echo $row["bonus_feature"] ?></td>
-                                                                            <td class="text-muted"><?php echo $row["category"] ?></td>
-                                                                            <td class="text-muted"><?php echo $row["quantity"] ?></td>
+                                                                            <td><?php echo $row["email"] ?></td>
+                                                                            <td class="text-muted"><?php echo $row["user_role"] ?></td>
                                                                             <td>
                                                                                 <div class="btn-list flex-nowrap">
                                                                                     <div class="dropdown">
@@ -118,35 +92,21 @@ class Products
                                                                                             Actions
                                                                                         </button>
                                                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                                                            <a class="dropdown-item btn btn-success" href="" onclick="event.preventDefault();
-                                                                                    document.getElementById('cart-form-<?php echo $row['id']; ?>').submit();">
-                                                                                                Add To Cart
+                                                                                            <a class="dropdown-item btn btn-info" href="" onclick="event.preventDefault();
+                                                                                    document.getElementById('edit-form-<?php echo $row['id']; ?>').submit();">
+                                                                                                Edit User
                                                                                             </a>
-                                                                                            <form id="cart-form-<?php echo $row["id"]; ?>" action="observer.php" method="POST" class="d-none">
-                                                                                                <input type="text" class="form-control" name="product_id" value="<?php echo $row["id"]; ?>">
+                                                                                            <form id="edit-form-<?php echo $row["id"]; ?>" action="edit_user.php" method="POST" class="d-none">
+                                                                                                <input type="text" class="form-control" name="user_id" value="<?php echo $row["id"]; ?>">
                                                                                             </form>
 
-                                                                                            <?php
-                                                                                            if ($role == "admin") {
-                                                                                            ?>
-                                                                                                <a class="dropdown-item btn btn-info" href="" onclick="event.preventDefault();
-                                                                                    document.getElementById('edit-form-<?php echo $row['id']; ?>').submit();">
-                                                                                                    Edit
-                                                                                                </a>
-                                                                                                <form id="edit-form-<?php echo $row["id"]; ?>" action="edit.php" method="POST" class="d-none">
-                                                                                                    <input type="text" class="form-control" name="product_id" value="<?php echo $row["id"]; ?>">
-                                                                                                </form>
-
-                                                                                                <a class="dropdown-item btn btn-danger" href="" onclick="event.preventDefault();
+                                                                                            <a class="dropdown-item btn btn-danger" href="" onclick="event.preventDefault();
                                                                                     document.getElementById('delete-form-<?php echo $row['id']; ?>').submit();">
-                                                                                                    Delete
-                                                                                                </a>
-                                                                                                <form id="delete-form-<?php echo $row['id']; ?>" action="delete.php" method="POST" class="d-none">
-                                                                                                    <input type="text" class="form-control" name="product_id" value="<?php echo $row["id"]; ?>">
-                                                                                                </form>
-                                                                                            <?php
-                                                                                            }
-                                                                                            ?>
+                                                                                                Delete User
+                                                                                            </a>
+                                                                                            <form id="delete-form-<?php echo $row['id']; ?>" action="delete_user.php" method="POST" class="d-none">
+                                                                                                <input type="text" class="form-control" name="user_id" value="<?php echo $row["id"]; ?>">
+                                                                                            </form>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -180,7 +140,7 @@ class Products
                             <div class="row align-items-center">
                                 <div class="col">
                                     <h2 class="page-title">
-                                        Products
+                                        Users
                                     </h2>
                                     <div class="page-body">
                                         <div class="container-xl">
@@ -192,7 +152,7 @@ class Products
                                                                 <tbody>
                                                                     <tr>
                                                                         <td class="w-full text-center">
-                                                                            <h1>No Products in the store</h1>
+                                                                            <h1>No Users in the database</h1>
                                                                         </td>
                                                                     </tr>
                                                                 </tbody>
@@ -216,8 +176,8 @@ class Products
     }
 }
 
-$products  = Products::getInstance();
-echo $products->allProducts();
+$users  = Users::getInstance();
+echo $users->allUsers();
 require 'footer.php';
 
 ?>

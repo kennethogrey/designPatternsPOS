@@ -23,9 +23,10 @@ session_start();
 
     if ($conn->query($sql) === TRUE) {
         $_SESSION['status']=$name.' has been updated successfully';
-        header('Location:http://localhost/pos/index.php');
+        header('Location:http://localhost/pos/dashboard.php');
     } else {
-        echo "Error updating record: " . $conn->error;
+        $_SESSION["status"] = "Error updating ".$name.".";
+        header('Location:http://localhost/pos/dashboard.php');
     }
 
     $conn->close();

@@ -41,16 +41,17 @@ class Cart implements Observer {
         $result = $conn->query($sql);
         if($result->num_rows > 0){
             $_SESSION['status'] ='The product already exists in the cart';
-            header('Location:http://localhost/pos/index.php');
+            header('Location:http://localhost/pos/dashboard.php');
         }
         else{
             $sql = "INSERT INTO cart (pname, cost, category, bonus_feature) VALUES ('$name', '$cost', '$category', '$features')";
                 
             if ($conn->query($sql) === TRUE) {
                 $_SESSION['status'] = $name.' has been added to the cart';
-                header('Location:http://localhost/pos/index.php');
+                header('Location:http://localhost/pos/dashboard.php');
             } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
+                $_SESSION["status"] = "Error inserting ".$name." into the cart.";
+                header('Location:http://localhost/pos/dashboard.php');
             }
         }
         
@@ -95,7 +96,7 @@ if ($result->num_rows > 0) {
     $cart->notify($sale);
 }else{
     $_SESSION['status'] ='Invalid product Id';
-    header('Location:http://localhost/pos/index.php');
+    header('Location:http://localhost/pos/dashboard.php');
 }
 
 

@@ -34,7 +34,9 @@ class ComposerStaticInit3ea7059a619d002c6ac708073725adfe
     );
 
     public static $classMap = array (
+        'App\\Admin' => __DIR__ . '/../..' . '/UserFactory.php',
         'App\\Cart' => __DIR__ . '/../..' . '/observer.php',
+        'App\\Cashier' => __DIR__ . '/../..' . '/UserFactory.php',
         'App\\Clothing' => __DIR__ . '/../..' . '/Factory.php',
         'App\\Electronics' => __DIR__ . '/../..' . '/Factory.php',
         'App\\Groceries' => __DIR__ . '/../..' . '/Factory.php',
@@ -46,6 +48,9 @@ class ComposerStaticInit3ea7059a619d002c6ac708073725adfe
         'App\\ProductInterface' => __DIR__ . '/../..' . '/Factory.php',
         'App\\Products' => __DIR__ . '/../..' . '/Products.php',
         'App\\Sales' => __DIR__ . '/../..' . '/observer.php',
+        'App\\UserFactory' => __DIR__ . '/../..' . '/UserFactory.php',
+        'App\\UserInterface' => __DIR__ . '/../..' . '/UserFactory.php',
+        'App\\Users' => __DIR__ . '/../..' . '/all_users.php',
         'CashPaymentStrategy' => __DIR__ . '/../..' . '/payment.php',
         'ComposerAutoloaderInit3ea7059a619d002c6ac708073725adfe' => __DIR__ . '/..' . '/composer/autoload_real.php',
         'Composer\\Autoload\\ClassLoader' => __DIR__ . '/..' . '/composer/ClassLoader.php',
@@ -895,8 +900,6 @@ class ComposerStaticInit3ea7059a619d002c6ac708073725adfe
         'PHPUnit\\Util\\Xml\\ValidationResult' => __DIR__ . '/..' . '/phpunit/phpunit/src/Util/Xml/ValidationResult.php',
         'PHPUnit\\Util\\Xml\\Validator' => __DIR__ . '/..' . '/phpunit/phpunit/src/Util/Xml/Validator.php',
         'PHPUnit\\Util\\Xml\\XmlException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Util/Exception/XmlException.php',
-        'PHPlot' => __DIR__ . '/..' . '/phplot/phplot.php',
-        'PHPlot_truecolor' => __DIR__ . '/..' . '/phplot/phplot.php',
         'PaymentContext' => __DIR__ . '/../..' . '/payment.php',
         'PaymentStrategy' => __DIR__ . '/../..' . '/payment.php',
         'PharIo\\Manifest\\Application' => __DIR__ . '/..' . '/phar-io/manifest/src/values/Application.php',

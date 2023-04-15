@@ -173,9 +173,6 @@ if ($result->num_rows > 0) {
         </div>
     </div>
 </div>
-<?php
-?>
-
 <script>
     // @formatter:off
     document.addEventListener("DOMContentLoaded", function() {
